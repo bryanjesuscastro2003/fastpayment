@@ -17,6 +17,6 @@ spring:
           enabled: true
       routes:
         - id: auth-service
-          url: lb://auth-service
+          uri: lb://auth-service
           predicates:
             - Path=/auth/**
