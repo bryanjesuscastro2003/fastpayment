@@ -6,8 +6,8 @@ spring:
     config:
       server:
         git:
-          default-label: "" # TODO
-          uri: "" # TODO
+          default-label: dev1
+          uri: https://github.com/bryanjesuscastro2003/fastpayment/tree/dev1
           search-paths: config-data
   application:
     name: config-server
