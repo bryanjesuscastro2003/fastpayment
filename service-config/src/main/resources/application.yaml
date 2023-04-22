@@ -7,7 +7,7 @@ spring:
       server:
         git:
           default-label: dev1
-          uri: https://github.com/bryanjesuscastro2003/fastpayment/tree/dev1
+          uri: https://github.com/bryanjesuscastro2003/fastpayment
           search-paths: config-data
   application:
-    name: config-server
+    name: service-config
