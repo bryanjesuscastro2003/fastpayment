@@ -23,6 +23,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
 
     @Override
     public GatewayFilter apply(Config config) {
+        System.out.println(" apply midle");
         return (((exchange, chain) -> {
              if(!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
                     return onError(exchange, HttpStatus.BAD_REQUEST);

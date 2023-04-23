@@ -37,15 +37,20 @@ public class AuthUserService {
         Optional<User> user = userRepository.findByUsername(dto.getUsername());
         if(user.isEmpty())
             return null;
-        if(passwordEncoder.matches(dto.getPassword(), user.get().getPassword()))
+        System.out.println("user token");
+        if(passwordEncoder.matches(dto.getPassword(), user.get().getPassword())) {
+            System.out.println("Pass password");
+            var tkt = jwtProvider.generateJwt(user.get());
+            System.out.println(tkt + " papa");
             return new TokenDto(jwtProvider.createToken(user.get()));
+        }
         return null;
     }
 
     public TokenDto validate(String token){
-        if(!jwtProvider.validateToken(token))
+        if(!jwtProvider.isJwtValid(token))
             return null;
-        String username = jwtProvider.getUsernameFromToken(token);
+        String username = jwtProvider.extractUsername(token);
         if(userRepository.findByUsername(username).isEmpty())
             return null;
         return new TokenDto(token);
