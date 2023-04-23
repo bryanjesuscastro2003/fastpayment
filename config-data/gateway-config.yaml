@@ -20,9 +20,10 @@ spring:
           uri: lb://auth-serviceV2
           predicates:
             - Path=/user/**
-          filters:
-            - AuthFilter
+
         - id: demo
           uri: lb://demo
           predicates:
             - Path=/test/**
+          filters:
+            - AuthFilter
