@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import reactor.core.publisher.Mono;
 
 @Configuration
@@ -28,6 +29,11 @@ public class Master {
     public UserDetailsService userDetailsService(){
         return username -> userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found :/"));
     }
+    @Bean(name = "mvcHandlerMappingIntrospector")
+    public HandlerMappingIntrospector mvcHandlerMappingIntrospector() {
+        return new HandlerMappingIntrospector();
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
