@@ -22,3 +22,7 @@ spring:
             - Path=/user/**
           filters:
             - AuthFilter
+        - id: manage-users
+          uri: lb://manage-users
+          predicates:
+            - Path=/info/**
